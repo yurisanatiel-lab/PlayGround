@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#101a2d" />
+  <title>Reino dos Sete — Aventura Pixel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Reino dos Sete início"><span class="brand-mark">✦</span><span>REINO<span class="brand-soft"> DOS SETE</span></span></a>
+      <div class="top-meta"><span class="live-dot"></span><span>AVENTURA SOLO</span><span class="meta-divider"></span><span id="topLevel">MUNDO 01</span></div>
+      <button class="sound-button" id="soundBtn" aria-label="Ativar ou desativar som">♫ <span>SOM</span></button>
+    </header>
+
+    <section class="game-layout">
+      <div class="game-column">
+        <div class="game-frame">
+          <canvas id="game" width="960" height="540" aria-label="Jogo Reino dos Sete"></canvas>
+          <div class="canvas-vignette"></div>
+          <div class="game-hud">
+            <div class="hud-world"><span class="world-icon">◈</span><div><small>LOCALIZAÇÃO</small><strong id="worldName">Bosque dos Começos</strong></div></div>
+            <div class="hud-stats">
+              <div class="hud-pill"><span class="coin-icon">●</span><b id="coinCount">00</b></div>
+              <div class="hud-pill"><span class="star-icon">★</span><b id="starCount">00</b></div>
+              <div class="health" aria-label="Energia"><i></i><i></i><i></i></div>
+              <button class="pause-button" id="pauseBtn" aria-label="Pausar">Ⅱ</button>
+            </div>
+          </div>
+          <div class="toast" id="toast" role="status"></div>
+          <div class="start-overlay" id="startOverlay">
+            <div class="start-card">
+              <div class="eyebrow"><span>✦</span> UMA AVENTURA PIXELADA <span>✦</span></div>
+              <h1>Reino dos<br><em>Sete</em></h1>
+              <p>Uma jornada pequena. Um desejo enorme.</p>
+              <button class="primary-button" id="startBtn">COMEÇAR A JORNADA <span>→</span></button>
+              <div class="start-hint"><span>⌨</span> Teclado ou toque para jogar</div>
+            </div>
+            <div class="start-badge"><span>7</span><small>RELÍQUIAS<br>PERDIDAS</small></div>
+          </div>
+          <div class="modal-layer hidden" id="modalLayer"></div>
+        </div>
+        <div class="control-strip">
+          <div class="control-copy"><span class="control-dot"></span><span id="controlTip">Explore, colete e encontre as 7 relíquias.</span></div>
+          <div class="key-guide"><span><kbd>←</kbd><kbd>→</kbd> MOVER</span><span><kbd>ESPAÇO</kbd> PULAR</span><span><kbd>X</kbd> AÇÃO</span></div>
+        </div>
+      </div>
+
+      <aside class="side-panel">
+        <section class="panel-block mission-block">
+          <div class="section-heading"><span>DIÁRIO DA JORNADA</span><span class="quest-mark">✧</span></div>
+          <div class="mission-title"><span class="mission-number" id="missionNumber">01</span><div><h2 id="missionTitle">O primeiro passo</h2><p id="missionText">Atravesse o bosque e encontre a saída.</p></div></div>
+          <div class="progress-line"><span id="missionProgress"></span></div>
+          <div class="progress-caption"><span id="progressText">BOSQUE DOS COMEÇOS</span><span id="progressPercent">0%</span></div>
+        </section>
+
+        <section class="panel-block inventory-block">
+          <div class="section-heading"><span>MOCHILA</span><button class="text-button" id="inventoryInfo">VER TUDO <span>↗</span></button></div>
+          <div class="inventory-grid">
+            <div class="item-slot"><span class="item-art coin-art">●</span><b id="invCoins">00</b><small>MOEDAS</small></div>
+            <div class="item-slot"><span class="item-art star-art">★</span><b id="invStars">00</b><small>ESTRELAS</small></div>
+            <div class="item-slot trophy-slot"><span class="item-art trophy-art">♜</span><b id="invTrophies">0/7</b><small>RELÍQUIAS</small></div>
+            <div class="item-slot orb-slot"><span class="item-art orb-art">✧</span><b id="invOrb">—</b><small>BOLA MÍSTICA</small></div>
+          </div>
+          <button class="exchange-button" id="exchangeBtn" disabled><span>✧</span> TROCAR 7 RELÍQUIAS <span class="exchange-count" id="exchangeCount">0 / 7</span></button>
+        </section>
+
+        <section class="panel-block worlds-block">
+          <div class="section-heading"><span>MUNDOS</span><span class="world-count">03</span></div>
+          <div class="world-list" id="worldList">
+            <div class="world-row active"><span class="world-thumb forest-thumb">♧</span><div><b>01 · Bosque</b><small>O primeiro passo</small></div><span class="world-state">AGORA</span></div>
+            <div class="world-row locked"><span class="world-thumb cave-thumb">◆</span><div><b>02 · Grutas</b><small>O enigma de pedra</small></div><span class="world-state">⌑</span></div>
+            <div class="world-row locked"><span class="world-thumb sky-thumb">☁</span><div><b>03 · Céu antigo</b><small>O dragão adormecido</small></div><span class="world-state">⌑</span></div>
+          </div>
+        </section>
+        <div class="side-footer"><span class="pixel-heart">♥</span> FEITO PARA JOGAR DEVAGAR <span>·</span> 2D PIXEL QUEST</div>
+      </aside>
+    </section>
+    <footer class="page-footer"><span>REINO DOS SETE <span class="footer-dot">✦</span> UMA AVENTURA DE BOLSO</span><span>DESLIZE OU USE AS SETAS PARA EXPLORAR</span></footer>
+  </main>
+
+  <div class="touch-controls" aria-label="Controles de toque">
+    <div class="touch-group"><button data-control="left" aria-label="Mover para esquerda">◀</button><button data-control="right" aria-label="Mover para direita">▶</button></div>
+    <div class="touch-group"><button data-control="action" class="action-touch" aria-label="Ação">✦</button><button data-control="jump" class="jump-touch" aria-label="Pular">↑</button></div>
+  </div>
+  <script src="game.js"></script>
+</body>
+</html>
