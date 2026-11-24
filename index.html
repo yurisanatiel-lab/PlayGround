@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#101619"><title>Guardiões do Reino</title><link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="app-shell">
+  <header class="topbar">
+    <a class="brand" href="#home" aria-label="Guardiões do Reino"><span class="brand-mark">✦</span><span><b>GUARDIÕES</b><small>DO REINO</small></span></a>
+    <nav class="main-nav"><button class="nav-btn active" data-view="battle">⌂ <span>Reino</span></button><button class="nav-btn" data-view="shop">▣ <span>Mercado</span></button><button class="nav-btn" data-view="summon">✧ <span>Invocação</span></button><button class="nav-btn" data-view="collection">♜ <span>Heróis</span></button></nav>
+    <div class="wallet"><div class="wallet-item"><span class="coin-icon">◉</span><b id="gold">1.250</b><button class="plus" data-view="shop">+</button></div><div class="wallet-item"><span class="gem-icon">◆</span><b id="gems">80</b><button class="plus" data-view="shop">+</button></div><button class="icon-btn" id="soundBtn" title="Som">♫</button><button class="avatar" id="adminOpen" title="Administração">♙</button></div>
+  </header>
+  <main>
+    <section id="battleView" class="view active">
+      <div class="page-heading"><div><div class="eyebrow">A FRONTEIRA PRECISA DE VOCÊ</div><h1>Defenda o <em>Reino</em></h1><p>Monte sua estratégia. Segure a linha. Proteja o cristal.</p></div><div class="stage-chip"><span class="live-dot"></span> CAMPANHA <b>01</b><span class="divider"></span> FLORESTA ANTIGA</div></div>
+      <div class="game-layout">
+        <section class="battle-panel panel">
+          <div class="battle-top"><div class="battle-label"><span class="map-icon">⌖</span><div><b>Clareira do Guardião</b><small id="battleSub">Prepare suas defesas</small></div></div><div class="battle-stats"><span>ONDA <b id="waveLabel">0</b></span><span class="heart">♥ <b id="livesLabel">20</b></span><span class="speed-controls"><button id="pauseBtn" title="Pausar">Ⅱ</button><button id="speedBtn" title="Velocidade">1×</button></span></div></div>
+          <div class="canvas-wrap"><canvas id="gameCanvas" aria-label="Campo de batalha"></canvas><div class="canvas-toast" id="toast"></div><div class="battle-overlay" id="battleOverlay"><div class="overlay-icon">⚔</div><h2>O reino está em paz</h2><p>Posicione suas torres e prepare-se para a primeira onda.</p><button class="primary-btn" id="startWave">COMEÇAR ONDA <span>→</span></button></div></div>
+          <div class="build-footer"><div class="build-head"><div><b>DEFESAS</b><small>Escolha uma unidade e posicione no terreno</small></div><span class="hint">Clique no mapa para colocar</span></div><div class="tower-list" id="towerList"></div></div>
+        </section>
+        <aside class="side-column">
+          <section class="panel objective-card"><div class="card-kicker">MISSÃO ATUAL <span>01 / 08</span></div><h3>O primeiro cerco</h3><p>Sobreviva a 5 ondas e proteja a clareira.</p><div class="quest-progress"><span id="questProgress"></span></div><div class="quest-foot"><span id="questText">0 / 5 ondas</span><b>◉ 350</b></div></section>
+          <section class="panel selected-card" id="selectedCard"><div class="card-kicker">UNIDADE SELECIONADA</div><div class="empty-select"><span>⌖</span><b>Nenhuma unidade</b><small>Construa uma defesa para ver seus detalhes.</small></div></section>
+          <section class="panel tip-card"><span class="tip-symbol">✦</span><div><b>DICA DO ESTRATEGISTA</b><p>Torres com alcance maior cobrem melhor as curvas do caminho.</p></div></section>
+          <button class="admin-link" id="adminLink">⚙ Painel do reino</button>
+        </aside>
+      </div>
+    </section>
+    <section id="shopView" class="view">
+      <div class="page-heading"><div><div class="eyebrow">RECURSOS PARA SUA JORNADA</div><h1>Mercado do <em>Reino</em></h1><p>Reforce suas defesas e prepare-se para qualquer ameaça.</p></div><div class="stage-chip">✦ ITENS <b>DA TEMPORADA</b></div></div>
+      <div class="shop-tabs"><button class="shop-tab active" data-shop="towers">Torres</button><button class="shop-tab" data-shop="characters">Personagens</button><button class="shop-tab" data-shop="coins">Pacotes de moedas</button><button class="shop-tab" data-shop="special">Especiais</button></div><div class="shop-grid" id="shopGrid"></div>
+    </section>
+    <section id="summonView" class="view">
+      <div class="page-heading"><div><div class="eyebrow">OUÇA O CHAMADO ANTIGO</div><h1>Portal de <em>Invocação</em></h1><p>As probabilidades são exibidas antes de cada invocação. Boa sorte, guardião.</p></div><div class="stage-chip">✧ GUARDA CELESTIAL</div></div>
+      <div class="summon-layout"><div class="summon-art panel"><div class="portal-rune">✧</div><div class="portal-orbit orbit-a"></div><div class="portal-orbit orbit-b"></div><div class="summon-copy"><span>PORTAL MÍSTICO</span><h2>O destino<br>aguarda.</h2><p>Invoca heróis para lutar ao seu lado.</p></div><div class="summon-result" id="summonResult"></div></div><div class="banner-list" id="bannerList"></div></div>
+      <div class="probability-note">✦ As chances são independentes a cada invocação. Personagens duplicados concedem essência para evolução.</div>
+    </section>
+    <section id="collectionView" class="view">
+      <div class="page-heading"><div><div class="eyebrow">SEUS ALIADOS</div><h1>Salão dos <em>Heróis</em></h1><p>Gerencie, evolua e conheça os defensores do reino.</p></div><div class="stage-chip">♜ COLEÇÃO <b id="collectionCount">0</b></div></div><div class="collection-grid" id="collectionGrid"></div>
+    </section>
+  </main>
+  <footer class="footer"><span>GUARDIÕES DO REINO <i>•</i> UMA JORNADA SEM FIM</span><span id="saveStatus">✓ Progresso salvo automaticamente</span></footer>
+</div>
+<div class="modal-backdrop" id="modalBackdrop"><div class="modal panel" id="modal"></div></div>
+<div class="admin-backdrop" id="adminBackdrop"><div class="admin-modal panel"><button class="modal-close" id="adminClose">×</button><div class="eyebrow">ACESSO RESTRITO</div><h2>Painel do <em>Reino</em></h2><p id="adminMessage">Informe a senha de administrador.</p><form id="adminForm"><input id="adminPassword" type="password" placeholder="Senha" autocomplete="current-password"><button class="primary-btn">ENTRAR <span>→</span></button></form><div id="adminTools" hidden></div></div></div>
+<script src="game.js"></script>
+</body></html>
